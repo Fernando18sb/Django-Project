@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
@@ -75,3 +76,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+class PasswordReset(LoginRequiredMixin, auth_views.PasswordResetView):
+    pass
+
+class PasswordResetDone(LoginRequiredMixin, auth_views.PasswordResetDoneView):
+    pass
+
+class PasswordResetConfirm(LoginRequiredMixin, auth_views.PasswordResetConfirmView):
+    pass
+
+class PasswordResetComplete(LoginRequiredMixin, auth_views.PasswordResetCompleteView):
+    pass
